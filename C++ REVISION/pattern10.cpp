@@ -45,7 +45,7 @@ for(int i=0;i<n;i++){
 }
 int main(){
 int n=5;
-printpattern1(n);
+printpattern1(n); 
 printpattern2(n);
 cout<<endl;
 printpattern3(n);
