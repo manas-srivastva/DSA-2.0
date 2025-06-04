@@ -38,7 +38,7 @@ int searchfirstandlastoccurence(int arr[],int n,int target){
     arr1[1]=last;
 }
 int main(){
-    int arr[]={1,2,3,4,5,5,5,5};
+    int arr[]= {1,2,3,4,5,5,5,5};
     int n=8;
     int target=5;
     int arr1[2];
