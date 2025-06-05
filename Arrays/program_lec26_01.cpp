@@ -15,7 +15,8 @@ using namespace std;
             for(int i=1;i<n;i++){
                 if((pos+mid)<=stalls[i]){
                     count++;
-                    pos=stalls[i];
+                    pos=  stalls[i];
+
                 }
             }
                 if(count<k)
@@ -40,3 +41,4 @@ int k=3;
 cout<<aggressiveCows(cows,k);
 return 0;
 }
+
