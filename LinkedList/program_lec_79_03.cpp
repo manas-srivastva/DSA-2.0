@@ -11,8 +11,8 @@ class Node
         next =NULL;
     }
 };
-Node *createLinkedList(int arr[],int index,int size){
-    // base case
+Node *createLinkedList(int arr[],int index,int size)
+{
     if(index==size)
     return NULL;
     Node *temp;
@@ -20,38 +20,39 @@ Node *createLinkedList(int arr[],int index,int size){
     temp->next=createLinkedList(arr,index+1,size);
     return temp;
 }
-int main()
-{
-    Node *Head;
+int main(){
+ Node *Head;
   Head=NULL;
  
 
   int arr[]={2,4,6,8,10};
-  Head=createLinkedList(arr,0,5);// as head was intialized as null
-  // insert node at prticular posistion
-  int x=3;// Insert posistion
-  int value=30;
-
-  Node *temp =Head;
-  x--;
-  while(x--)
-
+  Head=createLinkedList(arr,0,5);
+  // delete from a particular node
+  int X=3;
+  if(X==1)
   {
-    temp=temp->next;
+    Node*temp=Head;
+    Head=Head->next;
+    delete temp;
   }
-  Node *temp2=new Node(value);
-  temp2->next=temp->next;
-  temp->next=temp2;
- 
- 
+  X--;
+  Node *curr=Head;
+  Node *prev=NULL;
+  while(X--){
+    prev=curr;
+    curr=curr->next;
+  }
+  prev->next=curr->next;
+  delete curr;
+  Node *temp=Head;
  
 
-
-  temp=Head;
   while(temp!=NULL)
 {
  cout<<temp->data<<" ";
   temp=temp->next;
 }
-    return 0;
+   
+
+return 0;
 }
