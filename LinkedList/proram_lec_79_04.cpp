@@ -23,6 +23,10 @@ Node *createLinkedList(int arr[],int index,int size)
 Node* deleteNode(Node *curr,int x)
   {
 
+
+
+
+    
   if(x==1) 
   {
     Node *temp=curr->next;
