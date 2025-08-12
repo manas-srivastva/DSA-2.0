@@ -13,7 +13,8 @@ int main(){
     printf("1 for Adding elements in array \n");
     printf("2 for Displaying Array \n");
     printf("3 for Inserting elements in array \n");
-    printf("4 for Deleteion of Element \n");
+    printf("4 for Deletion of Element \n");
+    printf("5 for Exiting \n");
      scanf("%d",&choice);
      switch(choice){
         case 1:
@@ -28,12 +29,14 @@ int main(){
         case 4:
         delete();
         break;
+      case 5: 
+            printf("Exiting program...\n");
+            break;
         default:
-        printf("Invalid Choice");
-        break;
-     }
-   }
-   while(choice<5);
+            printf("Invalid Choice\n");
+            break;
+    }
+} while(choice != 5);
 return 0;
 }
 
@@ -54,7 +57,7 @@ void add_elements(){
         scanf("%d", &arr[i]);
     }
     }
-// Display array without parameters
+
 void display() {
     int i;
     if (N == 0) {
@@ -66,7 +69,7 @@ void display() {
         printf("%d\t\t%d\n", i + 1, arr[i]);
     }
 }
-// Insert element without parameters
+
 void insert() {
     int pos, elem, i;
 
@@ -86,7 +89,7 @@ void insert() {
     printf("Enter element to insert: ");
     scanf("%d", &elem);
 
-    // Shift elements right
+   
     for (i = N; i >= pos; i--) {
         arr[i] = arr[i - 1];
     }
@@ -96,7 +99,7 @@ void insert() {
     printf("Element inserted successfully.\n");
 }
 
-// Delete element without parameters
+
 void delete() {
     int pos, i;
 
