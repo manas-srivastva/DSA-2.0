@@ -1,0 +1,157 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct Employee {
+    int SSN;
+    char Name[20];
+    char Dept[10];
+    char Designation[20];
+    float Sal;
+    long int PhNo;
+    struct Employee *prev, *next;
+};
+
+typedef struct Employee NODE;
+NODE *head = NULL, *tail = NULL;
+int count = 0;
+
+// Create and insert node at end
+void create_end() {
+    NODE *newEmp = (NODE *)malloc(sizeof(NODE));
+    printf("\nEnter SSN, Name, Dept, Designation, Salary, PhNo:\n");
+    scanf("%d %s %s %s %f %ld", &newEmp->SSN, newEmp->Name, newEmp->Dept, newEmp->Designation, &newEmp->Sal, &newEmp->PhNo);
+    newEmp->prev = newEmp->next = NULL;
+    if (head == NULL) {
+        head = tail = newEmp;
+    } else {
+        tail->next = newEmp;
+        newEmp->prev = tail;
+        tail = newEmp;
+    }
+    count++;
+}
+
+// Display the DLL and count nodes
+void display_DLL() {
+    NODE *curr = head;
+    printf("\nEmployee List:\n");
+    if (!curr) {
+        printf("DLL is empty.\n");
+    }
+    while (curr) {
+        printf("SSN: %d, Name: %s, Dept: %s, Designation: %s, Salary: %.2f, PhNo: %ld\n",
+            curr->SSN, curr->Name, curr->Dept, curr->Designation, curr->Sal, curr->PhNo);
+        curr = curr->next;
+    }
+    printf("Number of employees: %d\n", count);
+}
+
+// Insert node at front
+void insert_front() {
+    NODE *newEmp = (NODE *)malloc(sizeof(NODE));
+    printf("\nEnter SSN, Name, Dept, Designation, Salary, PhNo:\n");
+    scanf("%d %s %s %s %f %ld", &newEmp->SSN, newEmp->Name, newEmp->Dept, newEmp->Designation, &newEmp->Sal, &newEmp->PhNo);
+    newEmp->prev = NULL;
+    newEmp->next = head;
+    if (head)
+        head->prev = newEmp;
+    else
+        tail = newEmp; // Empty list
+    head = newEmp;
+    count++;
+}
+
+// Delete node at end
+void delete_end() {
+    if (!tail) {
+        printf("DLL is empty.\n");
+        return;
+    }
+    NODE *temp = tail;
+    printf("Deleted Employee: SSN: %d, Name: %s\n", temp->SSN, temp->Name);
+    tail = tail->prev;
+    if (tail)
+        tail->next = NULL;
+    else
+        head = NULL; // List became empty
+    free(temp);
+    count--;
+}
+
+// Delete node at front
+void delete_front() {
+    if (!head) {
+        printf("DLL is empty.\n");
+        return;
+    }
+    NODE *temp = head;
+    printf("Deleted Employee: SSN: %d, Name: %s\n", temp->SSN, temp->Name);
+    head = head->next;
+    if (head)
+        head->prev = NULL;
+    else
+        tail = NULL; // List became empty
+    free(temp);
+    count--;
+}
+
+// Demonstrate double-ended queue using DLL
+void deque_demo() {
+    printf("\nDouble-Ended Queue Operations:\n");
+    printf("1. Insert at front (insert_front)\n");
+    printf("2. Delete from end (delete_end)\n");
+    printf("3. Insert at end (create_end)\n");
+    printf("4. Delete from front (delete_front)\n");
+    printf("Queue can add/remove at both ends using above functions.\n");
+}
+
+int main() {
+    int choice, n, i;
+    do {
+        printf("\n---- MENU ----\n");
+        printf("1. Create DLL of N Employees (end insertion)\n");
+        printf("2. Display DLL and count nodes\n");
+        printf("3. Insert at end\n");
+        printf("4. Delete at end\n");
+        printf("5. Insert at front\n");
+        printf("6. Delete at front\n");
+        printf("7. Double-Ended Queue demo\n");
+        printf("8. Exit\n");
+        printf("Enter choice: ");
+        scanf("%d", &choice);
+
+        switch(choice) {
+            case 1:
+                printf("Enter N: ");
+                scanf("%d", &n);
+                for(i=0;i<n;i++)
+                    create_end();
+                break;
+            case 2:
+                display_DLL();
+                break;
+            case 3:
+                create_end();
+                break;
+            case 4:
+                delete_end();
+                break;
+            case 5:
+                insert_front();
+                break;
+            case 6:
+                delete_front();
+                break;
+            case 7:
+                deque_demo();
+                break;
+            case 8:
+                printf("Exiting.\n");
+                break;
+            default:
+                printf("Invalid choice!\n");
+        }
+    } while(choice != 8);
+    return 0;
+}

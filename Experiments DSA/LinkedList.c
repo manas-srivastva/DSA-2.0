@@ -3,133 +3,149 @@
 #include <string.h>
 
 // Structure to store student data
-struct Student {
-    char usn[20], name[50], branch[20], phno[15];
+typedef struct Student {
+    char usn[20];
+    char name[30];
+    char branch[20];
     int sem;
+    char phno[15];
     struct Student *next;
-};
+} Student;
 
-typedef struct Student* NODE;
-NODE head = NULL;  // Global head pointer for the SLL
+Student *head = NULL; // Head pointer of linked list
 
-// Function to create a new node
-NODE createNode() {
-    NODE temp = (NODE)malloc(sizeof(struct Student));
-    if (!temp) {
+// Function to create a new student node
+Student* createNode() {
+    Student *newNode = (Student*)malloc(sizeof(Student));
+    if (!newNode) {
         printf("Memory allocation failed!\n");
         exit(0);
     }
-    printf("\nEnter Student Details:\n");
-    printf("USN: "); 
-    scanf("%s", temp->usn);
-    printf("Name: "); 
-    scanf("%s", temp->name);
-    printf("Branch: "); 
-    scanf("%s", temp->branch);
-    printf("Semester: "); 
-    scanf("%d", &temp->sem);
-    printf("Phone No: "); 
-    scanf("%s", temp->phno);
-    temp->next = NULL;
-    return temp;
+
+    printf("Enter USN: ");
+    scanf("%s", newNode->usn);
+    printf("Enter Name: ");
+    scanf("%s", newNode->name);
+    printf("Enter Branch: ");
+    scanf("%s", newNode->branch);
+    printf("Enter Semester: ");
+    scanf("%d", &newNode->sem);
+    printf("Enter Phone Number: ");
+    scanf("%s", newNode->phno);
+
+    newNode->next = NULL;
+    return newNode;
 }
 
-// Function to insert at front
-void insertFront() {
-    NODE newNode = createNode();
-    newNode->next = head;
-    head = newNode;
+// a. Create SLL of N Students using front insertion
+void createSLL(int n) {
+    for (int i = 0; i < n; i++) {
+        printf("\nEnter details of student %d:\n", i + 1);
+        Student *newNode = createNode();
+        newNode->next = head;  // Insert at front
+        head = newNode;
+    }
 }
 
-// Function to insert at end
+// b. Display SLL and count nodes
+void displaySLL() {
+    Student *temp = head;
+    int count = 0;
+
+    if (head == NULL) {
+        printf("\nSLL is empty!\n");
+        return;
+    }
+
+    printf("\nStudent List:\n");
+    printf("USN\tName\tBranch\tSem\tPhone\n");
+    printf("-------------------------------------------\n");
+    while (temp != NULL) {
+        printf("%s\t%s\t%s\t%d\t%s\n", temp->usn, temp->name, temp->branch, temp->sem, temp->phno);
+        temp = temp->next;
+        count++;
+    }
+    printf("\nTotal number of nodes = %d\n", count);
+}
+
+// c. Insertion at End
 void insertEnd() {
-    NODE newNode = createNode();
+    Student *newNode = createNode();
     if (head == NULL) {
         head = newNode;
         return;
     }
-    NODE temp = head;
-    while (temp->next != NULL)
+    Student *temp = head;
+    while (temp->next != NULL) {
         temp = temp->next;
+    }
     temp->next = newNode;
 }
 
-// Function to delete at front
-void deleteFront() {
-    if (head == NULL) {
-        printf("List is empty!\n");
-        return;
-    }
-    NODE temp = head;
-    printf("Deleted Student: %s\n", temp->usn);
-    head = head->next;
-    free(temp);
-}
-
-// Function to delete at end
+// c. Deletion at End
 void deleteEnd() {
     if (head == NULL) {
-        printf("List is empty!\n");
+        printf("\nSLL is empty!\n");
         return;
     }
-    NODE temp = head, prev = NULL;
-    if (head->next == NULL) {
-        printf("Deleted Student: %s\n", head->usn);
+    if (head->next == NULL) { // Only one node
+        printf("Deleted: %s\n", head->usn);
         free(head);
         head = NULL;
         return;
     }
-    while (temp->next != NULL) {
-        prev = temp;
+    Student *temp = head;
+    while (temp->next->next != NULL) {
         temp = temp->next;
     }
-    printf("Deleted Student: %s\n", temp->usn);
-    prev->next = NULL;
+    printf("Deleted: %s\n", temp->next->usn);
+    free(temp->next);
+    temp->next = NULL;
+}
+
+// d. Insertion at Front (Stack push)
+void insertFront() {
+    Student *newNode = createNode();
+    newNode->next = head;
+    head = newNode;
+}
+
+// d. Deletion at Front (Stack pop)
+void deleteFront() {
+    if (head == NULL) {
+        printf("\nSLL is empty!\n");
+        return;
+    }
+    Student *temp = head;
+    head = head->next;
+    printf("Deleted: %s\n", temp->usn);
     free(temp);
 }
 
-// Function to display the list
-void display() {
-    if (head == NULL) {
-        printf("List is empty!\n");
-        return;
-    }
-    NODE temp = head;
-    int count = 0;
-    printf("\nStudent List:\n");
-    while (temp != NULL) {
-        printf("USN: %s | Name: %s | Branch: %s | Sem: %d | Phone: %s\n",
-               temp->usn, temp->name, temp->branch, temp->sem, temp->phno);
-        temp = temp->next;
-        count++;
-    }
-    printf("Total Students = %d\n", count);
-}
-
-// Main menu
+// Menu-driven main function
 int main() {
-    int choice, n, i;
+    int choice, n;
+
     while (1) {
-        printf("\n--- Singly Linked List Menu ---\n");
-        printf("1. Create SLL of N students (Front Insertion)\n");
-        printf("2. Display SLL and Count Nodes\n");
+        printf("\n--- Singly Linked List Operations ---\n");
+        printf("1. Create SLL (Front Insertion)\n");
+        printf("2. Display SLL and Count\n");
         printf("3. Insert at End\n");
         printf("4. Delete at End\n");
-        printf("5. Insert at Front (Stack Demonstration)\n");
-        printf("6. Delete at Front (Stack Demonstration)\n");
+        printf("5. Insert at Front (Stack Push)\n");
+        printf("6. Delete at Front (Stack Pop)\n");
         printf("7. Exit\n");
-        printf("Enter choice: ");
+        printf("Enter your choice: ");
         scanf("%d", &choice);
 
         switch (choice) {
             case 1:
-                printf("Enter number of students: ");
+                printf("How many students to insert? ");
                 scanf("%d", &n);
-                for (i = 0; i < n; i++)
-                    insertFront();
+                createSLL(n);
                 break;
             case 2:
-                display();
+                displaySLL();
                 break;
             case 3:
                 insertEnd();
@@ -144,9 +160,10 @@ int main() {
                 deleteFront();
                 break;
             case 7:
+                printf("Exiting...\n");
                 exit(0);
             default:
-                printf("Invalid choice!\n");
+                printf("Invalid choice! Try again.\n");
         }
     }
     return 0;
