@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgriTech Project Flowchart</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+    body {
+        font-family: 'Roboto', Arial, sans-serif;
+        background-color: #f7f9fc;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .flowchart-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .flowchart-box {
+        border: 2px solid;
+        border-radius: 10px;
+        padding: 18px 30px;
+        min-width: 450px;
+        max-width: 500px;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+        background-color: #ffffff;
+    }
+
+    .flowchart-arrow {
+        font-size: 28px;
+        color: #555;
+        margin: 12px 0;
+        font-weight: bold;
+        line-height: 1;
+    }
+
+    /* Color Coding for Phases */
+    .box-plan {
+        background-color: #e6f7ff;
+        border-color: #91d5ff;
+    }
+
+    .box-data {
+        background-color: #fffbe6;
+        border-color: #ffe58f;
+    }
+
+    .box-module {
+        background-color: #f6ffed;
+        border-color: #d9f7be;
+    }
+
+    .box-integration {
+        background-color: #f9f0ff;
+        border-color: #d3adf7;
+    }
+
+    .box-eval {
+        background-color: #fff0e6;
+        border-color: #ffc09e;
+    }
+
+    .box-deploy {
+        background-color: #e6f7ff;
+        border-color: #91d5ff;
+    }
+
+    /* Text Styles */
+    .box-title {
+        font-weight: 700;
+        display: block;
+        font-size: 1.15em;
+        margin-bottom: 6px;
+        color: #333;
+    }
+
+    .box-desc {
+        font-size: 0.95em;
+        color: #555;
+        line-height: 1.4;
+    }
+</style>
+</head>
+<body>
+
+<div class="flowchart-container">
+
+    <!-- Phase 1 -->
+    <div class="flowchart-box box-plan">
+        <span class="box-title">Phase 1: Requirements & Design</span>
+        <span class="box-desc">Scope definition, technical requirements, and data source identification </span>
+    </div>
+
+    <span class="flowchart-arrow">&darr;</span>
+
+    <!-- Phase 2 -->
+    <div class="flowchart-box box-data">
+        <span class="box-title">Phase 2: Dataset Collection & Preprocessing</span>
+        <span class="box-desc">Gather & clean images (PlantVillage), market data (Agmarknet), and monitoring data (NDVI)</span>
+    </div>
+
+    <span class="flowchart-arrow">&darr;</span>
+
+    <!-- Phase 3 -->
+    <div class="flowchart-box box-module">
+        <span class="box-title">Phase 3: Disease Detection Model Development</span>
+        <span class="box-desc">Train CNN (ResNet50/DenseNet121) with data augmentation & transfer learning</span>
+    </div>
+
+    <span class="flowchart-arrow">&darr;</span>
+
+    <!-- Phase 4 -->
+    <div class="flowchart-box box-module">
+        <span class="box-title">Phase 4: Crop Monitoring & Growth Analysis</span>
+        <span class="box-desc">Computer Vision (Segmentation, NDVI) & IoT data integration (Soil, Weather)</span>
+    </div>
+
+    <span class="flowchart-arrow">&darr;</span>
+
+    <!-- Phase 5 -->
+    <div class="flowchart-box box-module">
+        <span class="box-title">Phase 5: Market Trend Prediction & Recommendation</span>
+        <span class="box-desc">Train ML Models (LSTM/ARIMA) on market data to forecast price & demand</span>
+    </div>
+
+    <span class="flowchart-arrow">&darr;</span>
+
+    <!-- Phase 6 -->
+    <div class="flowchart-box box-integration">
+        <span class="box-title">Phase 6: System Integration & Dashboard Development</span>
+        <span class="box-desc">Build farmer-friendly UI for alerts, analytics, and recommendations</span>
+    </div>
+
+    <span class="flowchart-arrow">&darr;</span>
+
+    <!-- Phase 7 -->
+    <div class="flowchart-box box-eval">
+        <span class="box-title">Phase 7: Testing, Evaluation & Improvement</span>
+        <span class="box-desc">Evaluate Accuracy, Reliability (F1, AUC-ROC) & user-friendliness (UI/UX)</span>
+    </div>
+
+    <span class="flowchart-arrow">&darr;</span>
+
+    <!-- Phase 8 -->
+    <div class="flowchart-box box-deploy">
+        <span class="box-title">Phase 8: Final Deployment & Documentation</span>
+        <span class="box-desc">Deploy web/mobile platform and submit final project report & synopsis</span>
+    </div>
+
+</div>
+
+</body>
+</html>
