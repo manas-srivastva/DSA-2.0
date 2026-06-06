@@ -2,6 +2,7 @@
 #include<vector>
 #include<queue>
 using namespace std;
+
 int spanningTree(int V,vector<vector<int>>adj[]){
     // priority queue
     priority_queue<pair<int,pair<int,int>>,vector<pair<int,pair<int,int>>>,greater<pair<int,pair<int,int>>>>pq;
