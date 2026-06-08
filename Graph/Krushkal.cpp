@@ -7,7 +7,7 @@ int FindParent(int u,vector<int>&parent)
     if(u==parent[u])
     return u;
 
-    return FindParent(parent[u],parent);
+    return parent[u]=FindParent(parent[u],parent);
 }
 
 void UnionByRank(int u,int v,vector<int>&parent,vector<int>&rank){
