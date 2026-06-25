@@ -51,6 +51,9 @@ int minStepToReachTarget(vector<int>& KnightPos, vector<int>& TargetPos, int N)
     return -1;
 }
 
+
+
+
 int main()
 {
     int N = 6;
