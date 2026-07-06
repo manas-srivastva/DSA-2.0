@@ -39,7 +39,9 @@ public:
 
         // 1. Explore UP
         if (isValid(i - 1, j, n, board)) {
-            auto [score, paths] = solve(i - 1, j, n, board);
+            pair<int, int> res = solve(i - 1, j, n, board);
+            int score = res.first;
+            int paths = res.second;
             upScore = score;
             upPaths = paths;
             if (upPaths > 0) {
@@ -49,7 +51,9 @@ public:
 
         // 2. Explore LEFT
         if (isValid(i, j - 1, n, board)) {
-            auto [score, paths] = solve(i, j - 1, n, board);
+            pair<int, int> res = solve(i, j - 1, n, board);
+            int score = res.first;
+            int paths = res.second;
             leftScore = score;
             leftPaths = paths;
             if (leftPaths > 0) {
@@ -59,7 +63,9 @@ public:
 
         // 3. Explore DIAGONALLY (Up-Left)
         if (isValid(i - 1, j - 1, n, board)) {
-            auto [score, paths] = solve(i - 1, j - 1, n, board);
+            pair<int, int> res = solve(i - 1, j - 1, n, board);
+            int score = res.first;
+            int paths = res.second;
             diagScore = score;
             diagPaths = paths;
             if (diagPaths > 0) {
